@@ -1,0 +1,250 @@
+/* =============================================
+   RESPONSIVE BREAKPOINTS & MOBILE REFINEMENTS
+   ============================================= */
+
+/* ── TABLET (≤1024px) ── */
+@media (max-width: 1024px) {
+  :root {
+    --container-max: 920px;
+  }
+
+  .gallery-masonry {
+    columns: 2 !important;
+  }
+}
+
+/* ── SMALL TABLET / LARGE PHONE (≤768px) ── */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 60px;
+    --section-padding-y: 3.5rem;
+    --section-padding-x: 1rem;
+  }
+
+  body {
+    /* Disable fixed background on mobile for performance */
+    background-attachment: scroll;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    line-height: 1.3;
+  }
+
+  .section-title span.script-highlight {
+    font-size: 1.2em;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    padding: 5px 14px;
+    letter-spacing: 0.14em;
+  }
+
+  /* Gallery → single column */
+  .gallery-masonry {
+    columns: 1 !important;
+  }
+
+  /* Timeline → left-aligned single column */
+  .timeline-container::before {
+    left: 24px !important;
+  }
+
+  .timeline-item {
+    width: 100% !important;
+    padding-left: 58px !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-bottom: 1.75rem !important;
+  }
+
+  .timeline-item.right {
+    margin-left: 0 !important;
+  }
+
+  .timeline-dot {
+    left: 24px !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+  }
+
+  /* Fights split → stacked */
+  .fights-split-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  .fights-split-grid > div {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(248, 187, 208, 0.5);
+  }
+
+  .fights-split-grid > div:last-child {
+    border-bottom: none;
+  }
+
+  /* Promises → single column */
+  .promises-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Reasons → single column */
+  .reasons-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Buttons → full width capped */
+  .btn-romantic,
+  .btn-secondary {
+    width: 100%;
+    max-width: 340px;
+    padding: 13px 24px;
+    font-size: 0.94rem;
+  }
+
+  /* Glass cards → tighter padding */
+  .glass-card {
+    border-radius: 18px;
+  }
+
+  /* Disable hover transforms on touch screens */
+  .glass-card:hover {
+    transform: none !important;
+  }
+}
+
+/* ── PHONE (≤480px) ── */
+@media (max-width: 480px) {
+  :root {
+    --nav-height: 56px;
+    --section-padding-y: 2.75rem;
+    --section-padding-x: 0.85rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    line-height: 1.32;
+    word-break: break-word;
+  }
+
+  .section-title span.script-highlight {
+    font-size: 1.15em;
+    display: block;
+    margin-top: 2px;
+  }
+
+  .section-subtitle {
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  .section-eyebrow {
+    font-size: 0.68rem;
+    padding: 4px 10px;
+    gap: 5px;
+    letter-spacing: 0.1em;
+  }
+
+  .section-header {
+    margin-bottom: 1.75rem;
+  }
+
+  /* Love Letter Paper */
+  .letter-paper {
+    padding: 1.5rem 1rem !important;
+    border-radius: 14px !important;
+  }
+
+  .letter-content {
+    font-size: 0.94rem !important;
+    line-height: 1.7 !important;
+    gap: 0.9rem !important;
+  }
+
+  /* Reasons filter pills */
+  .reasons-filter-bar {
+    gap: 5px !important;
+    justify-content: center !important;
+  }
+
+  .filter-pill {
+    font-size: 0.72rem !important;
+    padding: 5px 10px !important;
+  }
+
+  /* Glass cards → even tighter */
+  .glass-card {
+    border-radius: 16px;
+  }
+}
+
+/* ── VERY SMALL PHONE (≤360px) ── */
+@media (max-width: 360px) {
+  :root {
+    --section-padding-x: 0.65rem;
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .btn-romantic,
+  .btn-secondary {
+    max-width: 100%;
+    font-size: 0.88rem;
+    padding: 12px 18px;
+    gap: 6px;
+  }
+}
+
+/* ── SAFE AREA INSETS (notched phones) ── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .section-wrapper:last-of-type,
+  footer.section-wrapper {
+    padding-bottom: calc(var(--section-padding-y) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ── PREVENT HORIZONTAL OVERFLOW GLOBALLY ── */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── TOUCH DEVICE: disable hover-lift effects that feel odd ── */
+@media (hover: none) and (pointer: coarse) {
+  .glass-card:hover {
+    transform: none !important;
+    box-shadow: var(--shadow-soft) !important;
+  }
+
+  .btn-romantic:hover {
+    transform: none !important;
+  }
+
+  .btn-secondary:hover {
+    transform: none !important;
+  }
+}
