@@ -28,10 +28,11 @@ function generatePetals(count) {
 function generateStars(count) {
   return Array.from({ length: count }, (_, index) => {
     const left = Math.random() * 96 + 2
-    const top = Math.random() * 78 + 5
+    const top = -12 - Math.random() * 20
     const size = 2 + Math.random() * 3
-    const delay = `${(index * 0.27) % 4}s`
-    const duration = 2.5 + Math.random() * 3.5
+    const delay = `${(index * 0.27) % 5}s`
+    const duration = 6 + Math.random() * 8
+    const drift = (Math.random() - 0.5) * 40
 
     return {
       id: index,
@@ -40,6 +41,7 @@ function generateStars(count) {
       size,
       delay,
       duration: `${duration}s`,
+      drift,
     }
   })
 }
@@ -70,9 +72,10 @@ export function FloatingPetals({ count = 20, theme = 'light' }) {
                 width: `${star.size}px`,
                 height: `${star.size}px`,
                 borderRadius: '50%',
-                background: 'rgba(255,255,255,0.9)',
-                boxShadow: '0 0 10px rgba(147, 197, 253, 0.8)',
-                animation: `starTwinkle ${star.duration} ease-in-out ${star.delay} infinite alternate`,
+                background: 'rgba(255,255,255,0.95)',
+                boxShadow: '0 0 10px rgba(147, 197, 253, 0.8), 0 0 20px rgba(191, 219, 254, 0.65)',
+                animation: `starFall ${star.duration} linear ${star.delay} infinite`,
+                transform: `translate3d(0, 0, 0)`,
               }}
             />
           ))
@@ -145,18 +148,21 @@ export function FloatingPetals({ count = 20, theme = 'light' }) {
             transform: translateX(25px) rotate(24deg);
           }
         }
-        @keyframes starTwinkle {
+        @keyframes starFall {
           0% {
-            opacity: 0.2;
-            transform: scale(0.7);
+            opacity: 0;
+            transform: translate3d(0, 0, 0) scale(0.7);
+          }
+          12% {
+            opacity: 1;
           }
           50% {
             opacity: 1;
-            transform: scale(1.4);
+            transform: translate3d(18px, 42vh, 0) scale(1.1);
           }
           100% {
-            opacity: 0.65;
-            transform: scale(0.9);
+            opacity: 0;
+            transform: translate3d(-12px, 115vh, 0) scale(0.8);
           }
         }
       `}</style>

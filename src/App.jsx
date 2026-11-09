@@ -98,7 +98,7 @@ export default function App() {
 
       <main id="main-content">
         <Hero onEnter={() => scrollTo('#letter')} />
-        <LoveLetter />
+        <LoveLetter theme={theme} />
         <LoveTimeline />
         <MemoriesGallery />
         <ReasonsSection />

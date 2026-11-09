@@ -1,26 +1,29 @@
 import { Heart, Feather } from 'lucide-react'
 
-export function LoveLetter() {
+export function LoveLetter({ theme = 'light' }) {
+  const isDark = theme === 'dark'
+
   return (
     <section
       id="letter"
       className="section-wrapper"
       style={{
-        background:
-          'linear-gradient(180deg, rgba(255, 240, 245, 0.4) 0%, rgba(255, 253, 254, 0.95) 50%, rgba(255, 240, 245, 0.5) 100%)',
+        background: isDark
+          ? 'linear-gradient(180deg, rgba(7, 12, 24, 0.86) 0%, rgba(15, 23, 42, 0.96) 50%, rgba(7, 12, 24, 0.9) 100%)'
+          : 'linear-gradient(180deg, rgba(255, 240, 245, 0.4) 0%, rgba(255, 253, 254, 0.95) 50%, rgba(255, 240, 245, 0.5) 100%)',
       }}
     >
       <div className="section-container" style={{ maxWidth: '820px' }}>
         {/* Section Header */}
         <div className="section-header" data-reveal="up">
-          <div className="section-eyebrow">
-            <Feather size={14} color="#d81b60" />
+          <div className="section-eyebrow" style={{ background: isDark ? 'rgba(96, 165, 250, 0.14)' : 'rgba(248, 187, 208, 0.35)', borderColor: isDark ? 'rgba(147, 197, 253, 0.3)' : 'rgba(244, 143, 177, 0.4)', color: isDark ? '#dcebff' : '#d81b60' }}>
+            <Feather size={14} color={isDark ? '#93c5fd' : '#d81b60'} />
             <span>A Message From My Heart</span>
           </div>
-          <h2 className="section-title">
+          <h2 className="section-title" style={{ color: isDark ? '#f8fbff' : '#4a2331' }}>
             Before You Explore <span className="script-highlight">Our Story...</span>
           </h2>
-          <p className="section-subtitle">
+          <p className="section-subtitle" style={{ color: isDark ? '#cbd5e1' : '#9c6778' }}>
             A handwritten vow etched in honesty, vulnerability, and genuine love.
           </p>
         </div>
@@ -62,12 +65,13 @@ export function LoveLetter() {
           <div
             className="letter-paper"
             style={{
-              background: '#fffdfd',
+              background: isDark ? 'rgba(15, 23, 42, 0.92)' : '#fffdfd',
               borderRadius: '20px',
               padding: 'clamp(2.5rem, 6vw, 4.25rem) clamp(1.75rem, 5vw, 3.75rem)',
-              boxShadow:
-                '0 20px 50px -12px rgba(183, 110, 121, 0.22), 0 0 0 1px rgba(248, 187, 208, 0.55), inset 0 0 40px rgba(255, 240, 245, 0.4)',
-              border: '1px solid rgba(244, 143, 177, 0.3)',
+              boxShadow: isDark
+                ? '0 20px 50px -12px rgba(15, 23, 42, 0.72), 0 0 0 1px rgba(147, 197, 253, 0.24), inset 0 0 40px rgba(96, 165, 250, 0.08)'
+                : '0 20px 50px -12px rgba(183, 110, 121, 0.22), 0 0 0 1px rgba(248, 187, 208, 0.55), inset 0 0 40px rgba(255, 240, 245, 0.4)',
+              border: isDark ? '1px solid rgba(147, 197, 253, 0.22)' : '1px solid rgba(244, 143, 177, 0.3)',
               position: 'relative',
               overflow: 'hidden',
             }}
@@ -143,7 +147,7 @@ export function LoveLetter() {
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(1.12rem, 2.2vw, 1.35rem)',
-                color: '#4a2331',
+                color: isDark ? '#e2e8f0' : '#4a2331',
                 lineHeight: 1.85,
                 textAlign: 'left',
                 display: 'flex',
@@ -166,12 +170,12 @@ export function LoveLetter() {
                 difficult moments.
               </p>
 
-              <p style={{ fontWeight: 600, color: '#d81b60' }}>
+              <p style={{ fontWeight: 600, color: isDark ? '#93c5fd' : '#d81b60' }}>
                 But even after everything, my heart still finds its way back to you.
               </p>
 
               <p>
-                I don’t want a perfect love story. I want <strong style={{ color: '#4a2331' }}>our story</strong>, with all its
+                I don’t want a perfect love story. I want <strong style={{ color: isDark ? '#f8fbff' : '#4a2331' }}>our story</strong>, with all its
                 happiness, challenges, lessons, and memories.
               </p>
 
@@ -196,7 +200,7 @@ export function LoveLetter() {
                 style={{
                   fontFamily: 'var(--font-script)',
                   fontSize: 'clamp(2.2rem, 4.2vw, 3.2rem)',
-                  color: '#d81b60',
+                  color: isDark ? '#bfdbfe' : '#d81b60',
                   lineHeight: 1.2,
                 }}
               >
@@ -208,7 +212,7 @@ export function LoveLetter() {
                   fontSize: '0.84rem',
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: '#9c6778',
+                  color: isDark ? '#cbd5e1' : '#9c6778',
                   marginTop: '4px',
                 }}
               >
